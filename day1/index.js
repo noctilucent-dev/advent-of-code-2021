@@ -13,13 +13,12 @@ function part1(depths) {
 
 function part2(depths) {
     let increasing = 0;
-    let previousWindow = depths[0] + depths[1] + depths[2];
     for(let i=3; i<depths.length; i++) {
-        const currentWindow = depths[i] + depths[i-1] + depths[i-2];
-        if (currentWindow > previousWindow) {
+        // We only need to compare the number coming into the window
+        // with the number being removed
+        if (depths[i] > depths[i-3]) {
             increasing++;
         }
-        previousWindow = currentWindow;
     }
     return increasing;
 }
