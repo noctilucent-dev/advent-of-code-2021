@@ -97,4 +97,18 @@ function part1(draws, boards) {
 
 }
 
-console.log(part1(draws, boards));
+function part2(draws, boards) {
+    for(let i=0; i<draws.length; i++) {
+        const last = boards.length < 2 ? boards[0] : undefined;
+        boards.forEach(b => b.mark(draws[i]));
+        boards = boards.filter(b => !b.bingo());
+        if (last && boards.length === 0) {
+            console.log(last);
+            return last.score(draws[i]);
+        }
+    }
+}
+
+console.log(part2(draws, boards));
+
+// part 2 15960 too high
