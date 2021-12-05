@@ -100,4 +100,62 @@ function part1(coords) {
     return rows.flat().filter(v => v > 1).length;
 }
 
-console.log(part1(coords));
+function mark(rows, x, y) {
+    if (!rows[y]) rows[y] = [];
+    if (rows[y][x]) rows[y][x]++;
+    else rows[y][x] = 1;
+}
+
+function part2(coords) {
+    const rows = [];
+
+    for(let i=0; i<coords.length; i++) {
+        let [x1, y1, x2, y2] = coords[i];
+        console.log(`${x1},${y1} -> ${x2},${y2}`);
+
+        if (!rows[y1]) rows[y1] = [];
+        if (!rows[y2]) rows[y2] = [];
+
+        if (x1 === x2) {
+            console.log("column");
+            // column
+            for (let y=y1; y<=y2; y++) {
+                mark(rows, x1, y);
+            }
+        } else if (y1 === y2) {
+            console.log("row");
+            for (let x=x1; x<=x2; x++) {
+                mark(rows, x, y1);
+            }
+        } else {
+            if (x2 > x1 && y2 > y1) {
+                console.log("down/right");
+                for (let i=0; i<=x2-x1; i++) {
+                    mark(rows, x1+i, y1+i);
+                }
+            } else if (x2 < x1 && y2 > y1) {
+                console.log("down/left");
+                for (let i=0; i<=x1-x2; i++) {
+                    mark(rows, x1-i, y1+i);
+                }
+                
+            } else if (x2 > x1 && y2 < y1) {
+                console.log("up/right");
+                for (let i=0; i<=x2-x1; i++) {
+                    mark(rows, x1+i, y1-i);
+                }
+            } else {
+                console.log("up / left");
+                for (let i=0; i<=x2-x1; i++) {
+                    mark(rows, x1-i, y1-i);
+                }
+            }
+        }
+        //draw(rows);
+    }
+
+    return rows.flat().filter(v => v > 1).length;
+}
+
+// console.log(part1(coords));
+console.log(part2(coords));
