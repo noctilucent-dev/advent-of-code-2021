@@ -1,7 +1,4 @@
-const fs = require("fs");
-
-const raw = fs.readFileSync("input.txt", "utf8").toString();
-const depths = raw.trim().split("\n").map(Number);
+let { raw } = require("../util");
 
 function part1(depths) {
     let increasing = 0;
@@ -22,6 +19,8 @@ function part2(depths) {
     }
     return increasing;
 }
+
+const depths = raw.trim().split("\n").map(Number);
 
 console.log(part1(depths));
 console.log(part2(depths));

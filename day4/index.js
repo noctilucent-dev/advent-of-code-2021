@@ -1,6 +1,4 @@
-const fs = require("fs");
-
-let raw = fs.readFileSync("input.txt", "utf8").toString();
+let { raw, log } = require("../util");
 
 class Board {
     constructor(lines) {
@@ -61,8 +59,8 @@ function part1(draws, boards) {
         boards.forEach(b => b.mark(draws[i]));
         winner = boards.find(b => b.bingo());
         if (winner) {
-            console.log("First winner:")
-            console.log(winner.rows);
+            log("First winner:")
+            log(winner.rows);
             return winner.score(draws[i]);
         }
     }
@@ -75,8 +73,8 @@ function part2(draws, boards) {
         boards.forEach(b => b.mark(draws[i]));
         boards = boards.filter(b => !b.bingo());
         if (last && boards.length === 0) {
-            console.log("Last winner:")
-            console.log(last.rows);
+            log("Last winner:")
+            log(last.rows);
             return last.score(draws[i]);
         }
     }

@@ -1,9 +1,4 @@
-const fs = require("fs");
-
-let raw = fs.readFileSync("input.txt", "utf8").toString();
-
-// set true to use sample data and draw map
-let DEBUG = !!process.env.DEBUG;
+let { raw, DEBUG, log } = require("../util");
 
 if (DEBUG) {
     raw = `0,9 -> 5,9
@@ -16,12 +11,6 @@ if (DEBUG) {
     3,4 -> 1,4
     0,0 -> 8,8
     5,5 -> 8,2`;
-}
-
-function log(l) {
-    if (DEBUG) {
-        console.log(l);
-    }
 }
 
 function getMax(rows) {

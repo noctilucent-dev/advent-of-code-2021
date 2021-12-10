@@ -1,18 +1,7 @@
-const fs = require("fs");
-
-let raw = fs.readFileSync("input.txt", "utf8").toString();
-
-// set true to use sample data and draw map
-let DEBUG = !!process.env.DEBUG;
+let { raw, DEBUG, log } = require("../util");
 
 if (DEBUG) {
     raw = `16,1,2,0,4,2,7,1,2,14`;
-}
-
-function log(l) {
-    if (DEBUG) {
-        console.log(l);
-    }
 }
 
 function part1(crabs) {

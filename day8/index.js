@@ -1,9 +1,4 @@
-const fs = require("fs");
-
-let raw = fs.readFileSync("input.txt", "utf8").toString();
-
-// set true to use sample data and draw map
-let DEBUG = !!process.env.DEBUG;
+let { raw, DEBUG, log } = require("../util");
 
 if (DEBUG) {
     raw = `be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
@@ -22,24 +17,10 @@ if (DEBUG) {
 
 const lines = raw.trim().split("\n");
 
-function log(l) {
-    if (DEBUG) {
-        console.log(l);
-    }
-}
-
 /*
  * Useful set functions, taken from Mozilla Wiki (under public domain):
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
  */
-function union(setA, setB) {
-    let _union = new Set(setA)
-    for (let elem of setB) {
-        _union.add(elem)
-    }
-    return _union
-}
-
 function intersection(setA, setB) {
     let _intersection = new Set()
     for (let elem of setB) {

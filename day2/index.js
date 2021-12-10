@@ -1,14 +1,14 @@
-const fs = require("fs");
+let { raw, DEBUG } = require("../util");
 
-let raw = fs.readFileSync("input.txt", "utf8").toString();
-// raw = `forward 5
-// down 5
-// forward 8
-// up 3
-// down 8
-// forward 2`;
-
-const instructions = raw.trim().split("\n");
+if (DEBUG) {
+    raw = `
+    forward 5
+    down 5
+    forward 8
+    up 3
+    down 8
+    forward 2`;
+}
 
 function part1(instructions) {
     let depth = 0;
@@ -53,6 +53,8 @@ function part2(instructions) {
 
     return horizontal * depth;
 }
+
+const instructions = raw.trim().split("\n").map(l => l.trim());
 
 console.log(part1(instructions));
 console.log(part2(instructions));
