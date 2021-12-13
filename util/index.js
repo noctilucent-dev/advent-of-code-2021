@@ -11,8 +11,13 @@ function log(l) {
     }
 }
 
+function deepClone(arr) {
+    return [...arr.map(l => [...l])];
+}
+
 module.exports = {
     raw,
     DEBUG,
-    log
+    log,
+    deepClone
 };
